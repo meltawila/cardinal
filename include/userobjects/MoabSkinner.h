@@ -154,6 +154,8 @@ public:
 protected:
   std::unique_ptr<NumericVector<Number>> _serialized_solution;
 
+  MooseSharedPointer<DisplacedProblem> _displaced_problem;
+
   /// MOAB interface
   std::shared_ptr<moab::Interface> _moab;
 
@@ -199,6 +201,9 @@ protected:
 
   /// Whether to output the MOAB mesh to a .h5m file
   const bool & _output_full;
+
+  /// Whether the skinned mesh should be generated from a displaced mesh
+  const bool & _use_displaced;
 
   /**
    * Whether to build a graveyard as two additional cube surfaces surrounding the mesh.
