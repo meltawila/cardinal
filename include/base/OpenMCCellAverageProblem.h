@@ -59,6 +59,12 @@
  *    TRISO universe in each of your repeatable-units (e.g. pebbles, compacts, plates)
  *    AND (ii) leverage the 'identical_cell_fills' option.
  */
+
+ // Forward Declarations
+class FEProblemBase;
+class MooseMesh;
+class DisplacedProblem;
+
 class OpenMCCellAverageProblem : public OpenMCProblemBase
 {
 public:
@@ -1147,6 +1153,15 @@ protected:
 
   /// Tolerance for setting zero tally
   static constexpr Real ZERO_TALLY_THRESHOLD = 1e-12;
+
+  /// The FE problem
+  FEProblemBase & _fe_problem;
+
+  /// The displaced problem
+  MooseSharedPointer<DisplacedProblem> _displaced_problem;
+
+  /// The displaced mesh
+  MooseMesh * _mesh;
 
 private:
   /**
