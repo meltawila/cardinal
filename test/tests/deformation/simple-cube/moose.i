@@ -5,7 +5,7 @@
 
 [Mesh]
   type = FileMesh
-  file = box.msh
+  file = t5.msh
 []
 
 [Variables]

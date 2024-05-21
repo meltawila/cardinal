@@ -297,6 +297,8 @@ MoabSkinner::update()
   // Find the surfaces of local temperature regions
   findSurfaces();
 
+  _displaced_problem->updateMesh();
+
   _console << "done" << std::endl;
 }
 
@@ -306,7 +308,7 @@ MoabSkinner::findBlocks()
   _blocks.clear();
 
   int i = 0;
-  for (const auto & b : _fe_problem.mesh().meshSubdomains())
+  for (const auto & b : _displaced_problem->mesh().meshSubdomains())
     _blocks[b] = i++;
 
   _n_block_bins = _blocks.size();
@@ -550,9 +552,9 @@ MoabSkinner::sortElemsByResults()
   std::vector<unsigned int> n_temp_hits(_n_temperature_bins, 0);
   std::vector<unsigned int> n_density_hits(_n_density_bins, 0);
 
-  for (unsigned int e = 0; e < _fe_problem.mesh().nElem(); ++e)
+  for (unsigned int e = 0; e < _displaced_problem->mesh().nElem(); ++e)
   {
-    const Elem * const elem = _fe_problem.mesh().queryElemPtr(e);
+    const Elem * const elem = _displaced_problem->mesh().queryElemPtr(e);
     if (!elem)
       continue;
 

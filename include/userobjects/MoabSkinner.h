@@ -154,8 +154,6 @@ public:
 protected:
   std::unique_ptr<NumericVector<Number>> _serialized_solution;
 
-  MooseSharedPointer<DisplacedProblem> _displaced_problem;
-
   /// MOAB interface
   std::shared_ptr<moab::Interface> _moab;
 
@@ -203,7 +201,6 @@ protected:
   const bool & _output_full;
 
   /// Whether the skinned mesh should be generated from a displaced mesh
-  const bool & _use_displaced;
 
   /**
    * Whether to build a graveyard as two additional cube surfaces surrounding the mesh.
@@ -219,6 +216,10 @@ protected:
 
   /// Whether this class runs by itself, or is controlled by an external class
   bool _standalone;
+
+  const bool & _use_displaced;
+
+  MooseSharedPointer<DisplacedProblem> _displaced_problem;
 
   /// Encode the whether the surface normal faces into or out of the volume
   enum Sense
