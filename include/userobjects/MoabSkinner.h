@@ -8,8 +8,6 @@
 #include "moab/GeomTopoTool.hpp"
 #include "MBTagConventions.hpp"
 
-class MosseMesh;
-
 /**
  * \brief Skins the [Mesh] according to individual bins for temperature, density, and subdomain ID
  *
