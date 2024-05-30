@@ -29,8 +29,6 @@
 #include "DagMC.hpp"
 #endif
 
-class FEProblemBase;
-
 /**
  * Mapping of OpenMC to a collection of MOOSE elements, with temperature and/or
  * density feedback. The mappind is established authomatically by looping over
@@ -1174,13 +1172,6 @@ protected:
   
   /// Whether the skinned mesh should be generated from a displaced mesh
   const bool & _use_displaced;
-  
-  FEProblemBase & _fe_problem;
-
-  MooseSharedPointer<DisplacedProblem> _displaced_problem;
-
-  /// Moose mesh
-  MooseMesh * _mesh;
 
 private:
   /**
