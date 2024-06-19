@@ -95,7 +95,7 @@ OpenMCCellAverageProblem::validParams()
       "tally_score", getTallyScoreEnum(), "Score(s) to use in the OpenMC tallies. If not specified, defaults to 'kappa_fission'");
 
   MooseEnum scores_heat(
-    "heating heating_local kappa_fission fission_q_prompt fission_q_recoverable");
+    "heating heating_local kappa_fission fission_q_prompt fission_q_recoverable total");
   params.addParam<MooseEnum>(
       "source_rate_normalization",
       scores_heat,
@@ -2851,6 +2851,8 @@ OpenMCCellAverageProblem::tallyMultiplier(const unsigned int & score) const
     if (_tally_score[score] == "flux")
       return source / _scaling;
     else if (_tally_score[score] == "H3-production")
+      return source;
+    else if (_tally_score[score] == "total")
       return source;
     else
       mooseError("Unhandled tally score enum!");
